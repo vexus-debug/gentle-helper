@@ -25,7 +25,7 @@ const About = () => (
           </SectionReveal>
           <SectionReveal delay={0.2}>
             <h2 className="font-display text-3xl font-extrabold text-foreground">
-              A family practice with a <span className="text-primary">gentle</span> touch
+              A family practice with a <span className="text-accent">gentle</span> touch
             </h2>
             <p className="font-body text-muted-foreground mt-4 leading-relaxed">
               Located in Karu, Abuja, we serve families, young professionals, and NHIS patients with comprehensive dental care. Our clinic combines modern equipment with a warm, patient-first approach.

@@ -41,7 +41,7 @@ const Contact = () => (
             </div>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="https://wa.me/2348000000000"
+                href="https://wa.me/2349038535214"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-inner bg-primary px-6 py-3 font-display text-sm font-bold text-primary-foreground transition-all duration-200 hover:-translate-y-px active:scale-95"

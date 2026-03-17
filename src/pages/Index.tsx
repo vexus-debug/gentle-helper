@@ -157,7 +157,7 @@ const Index = () => (
           <SectionReveal>
             <span className="font-display text-sm font-semibold text-accent uppercase tracking-wider">Find Us</span>
             <h2 className="font-display text-4xl font-extrabold text-foreground mt-3">
-              Visit us in <span className="text-primary">Karu, Abuja</span>
+              Visit us in <span className="text-accent">Karu, Abuja</span>
             </h2>
             <p className="font-body text-muted-foreground mt-4 leading-relaxed">
               Conveniently located near major landmarks. We're easy to find and always ready to welcome you.

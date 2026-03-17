@@ -32,7 +32,7 @@ const Privacy = () => (
           </SectionReveal>
           <SectionReveal>
             <h2 className="font-display text-2xl font-bold text-foreground">5. Your Rights</h2>
-            <p>You have the right to access, correct, or request deletion of your personal information. Contact us at info@rubismile.com for any privacy-related requests.</p>
+            <p>You have the right to access, correct, or request deletion of your personal information. Contact us at rubiismiledentalclinic@gmail.com for any privacy-related requests.</p>
           </SectionReveal>
           <SectionReveal>
             <h2 className="font-display text-2xl font-bold text-foreground">6. Contact</h2>

@@ -294,8 +294,8 @@ const About = () => {
             </h2>
             <div className="mt-8 space-y-5">
               {[
-                { icon: MapPin, label: "Location", value: "No 6 November Street, near Chief Palace Layout, Karu, Abuja" },
-                { icon: Clock, label: "Hours", value: "Mon – Fri: 9:00 AM – 5:30 PM | Sat: 9:00 AM – 3:30 PM" },
+                { icon: MapPin, label: "Location", value: (c.address as string) || "No 6 November Street, near Chief Palace Layout, Karu, Abuja" },
+                { icon: Clock, label: "Hours", value: (c.hours as string) || "Mon – Fri: 9:00 AM – 5:30 PM | Sat: 9:00 AM – 3:30 PM" },
                 { icon: MessageCircle, label: "WhatsApp", value: "0903 853 5214" },
                 { icon: Phone, label: "Call / Enquiry", value: "0902 440 3837" },
               ].map((item) => (

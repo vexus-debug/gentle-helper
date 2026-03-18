@@ -97,16 +97,16 @@ const About = () => {
           <SectionReveal delay={0.15}>
             <span className="font-display text-sm font-semibold text-accent uppercase tracking-wider">Our Story</span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-              A family practice with a <span className="text-accent">gentle</span> touch
+              {(c.story_heading as string) || <>A family practice with a <span className="text-accent">gentle</span> touch</>}
             </h2>
             <p className="font-body text-muted-foreground mt-6 leading-relaxed">
-              Located at No 6 November Street, near Chief Palace Layout, Karu, Abuja, Rubi Smile Dental Clinic was founded with a simple mission: to make quality dental care accessible, comfortable, and affordable for everyone.
+              {(c.story_p1 as string) || "Located at No 6 November Street, near Chief Palace Layout, Karu, Abuja, Rubi Smile Dental Clinic was founded with a simple mission: to make quality dental care accessible, comfortable, and affordable for everyone."}
             </p>
             <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-              We serve families, young professionals, and NHIS patients with comprehensive dental care. Our clinic combines modern equipment with a warm, patient-first approach that puts your comfort above all else.
+              {(c.story_p2 as string) || "We serve families, young professionals, and NHIS patients with comprehensive dental care. Our clinic combines modern equipment with a warm, patient-first approach that puts your comfort above all else."}
             </p>
             <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-              We understand that visiting the dentist can be anxiety-inducing. That's why we've created an environment that feels safe, welcoming, and reassuring — whether you're here for a routine cleaning or a complex procedure.
+              {(c.story_p3 as string) || "We understand that visiting the dentist can be anxiety-inducing. That's why we've created an environment that feels safe, welcoming, and reassuring — whether you're here for a routine cleaning or a complex procedure."}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSiteContent } from "@/hooks/useSiteContent";
 import {
   Shield, Heart, Zap, Star, CheckCircle, Clock, ArrowRight,
   Baby, Scissors, Sparkles, Phone, MessageCircle, ChevronRight,
@@ -19,10 +20,10 @@ import treatment3 from "@/assets/gallery/treatment-3.jpg";
 import orthodontics from "@/assets/gallery/orthodontics.webp";
 import reception from "@/assets/gallery/reception-desk.jpg";
 
-const WHATSAPP_NUMBER = "2349038535214";
-const CALL_NUMBER = "+2349024403837";
+const WHATSAPP_NUMBER_DEFAULT = "2349038535214";
+const CALL_NUMBER_DEFAULT = "+2349024403837";
 
-const serviceCategories = [
+const defaultServiceCategories = [
   {
     icon: Shield,
     title: "Preventive Dentistry",
@@ -150,6 +151,11 @@ const whyChooseUs = [
 ];
 
 const Services = () => {
+  const { content: c } = useSiteContent("services");
+  const WHATSAPP_NUMBER = (c.whatsapp as string) || WHATSAPP_NUMBER_DEFAULT;
+  const CALL_NUMBER = (c.phone as string) || CALL_NUMBER_DEFAULT;
+  const serviceCategories = (c.categories as any[]) || defaultServiceCategories;
+
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
   const [showBooking, setShowBooking] = useState(false);
@@ -198,13 +204,13 @@ const Services = () => {
         <div className="container mx-auto px-6 relative z-10 py-32">
           <SectionReveal>
             <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 px-4 py-1.5 font-display text-sm font-semibold text-accent backdrop-blur-sm border border-accent/20">
-              <Sparkles className="h-4 w-4" /> Comprehensive Dental Care
+              <Sparkles className="h-4 w-4" /> {(c.hero_badge as string) || "Comprehensive Dental Care"}
             </span>
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary-foreground mt-6 max-w-3xl leading-[1.1]">
-              Expert Care for Every <span className="text-accent">Smile</span>
+              {(c.hero_heading as string) || <>Expert Care for Every <span className="text-accent">Smile</span></>}
             </h1>
             <p className="font-body text-lg text-primary-foreground/80 mt-6 max-w-xl leading-relaxed">
-              From routine cleanings to advanced procedures — 7 specialized service categories tailored to your family's needs.
+              {(c.hero_desc as string) || "From routine cleanings to advanced procedures — 7 specialized service categories tailored to your family's needs."}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <button
@@ -368,7 +374,7 @@ const Services = () => {
             <div className="text-center mb-16">
               <span className="font-display text-sm font-semibold text-accent uppercase tracking-wider">Why Rubi Smile</span>
               <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-                Why Patients Trust Us
+                {(c.why_heading as string) || "Why Patients Trust Us"}
               </h2>
             </div>
           </SectionReveal>

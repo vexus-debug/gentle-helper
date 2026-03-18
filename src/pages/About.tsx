@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useSiteContent } from "@/hooks/useSiteContent";
 import {
   Heart, Users, Shield, Award, MapPin, Clock, Phone,
   ArrowRight, MessageCircle, Sparkles, Target, Eye,
@@ -47,7 +48,14 @@ const stats = [
   { value: "NHIS", label: "Insurance Accepted", icon: Shield },
 ];
 
-const About = () => (
+const About = () => {
+  const { content: c } = useSiteContent("about");
+  const dbValues = (c.values as any[]) || values;
+  const dbMilestones = (c.milestones as any[]) || milestones;
+  const WHATSAPP_NUMBER = "2349038535214";
+  const CALL_NUMBER = "+2349024403837";
+
+  return (
   <Layout>
     {/* Hero with image background */}
     <section className="relative min-h-[65vh] flex items-center overflow-hidden">
@@ -58,13 +66,13 @@ const About = () => (
       <div className="container mx-auto px-6 relative z-10 py-32">
         <SectionReveal>
           <span className="inline-flex items-center gap-2 rounded-full bg-accent/20 px-4 py-1.5 font-display text-sm font-semibold text-accent backdrop-blur-sm border border-accent/20">
-            <Sparkles className="h-4 w-4" /> About Rubi Smile
+            <Sparkles className="h-4 w-4" /> {(c.hero_badge as string) || "About Rubi Smile"}
           </span>
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary-foreground mt-6 max-w-3xl leading-[1.1]">
-            Dentistry with <span className="text-accent">Heart</span>
+            {(c.hero_heading as string) || <>Dentistry with <span className="text-accent">Heart</span></>}
           </h1>
           <p className="font-body text-lg text-primary-foreground/80 mt-6 max-w-xl leading-relaxed">
-            We believe everyone deserves access to quality, compassionate dental care. That's the promise behind every smile we create.
+            {(c.hero_desc as string) || "We believe everyone deserves access to quality, compassionate dental care. That's the promise behind every smile we create."}
           </p>
         </SectionReveal>
       </div>
@@ -89,16 +97,16 @@ const About = () => (
           <SectionReveal delay={0.15}>
             <span className="font-display text-sm font-semibold text-accent uppercase tracking-wider">Our Story</span>
             <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-foreground mt-3">
-              A family practice with a <span className="text-accent">gentle</span> touch
+              {(c.story_heading as string) || <>A family practice with a <span className="text-accent">gentle</span> touch</>}
             </h2>
             <p className="font-body text-muted-foreground mt-6 leading-relaxed">
-              Located at No 6 November Street, near Chief Palace Layout, Karu, Abuja, Rubi Smile Dental Clinic was founded with a simple mission: to make quality dental care accessible, comfortable, and affordable for everyone.
+              {(c.story_p1 as string) || "Located at No 6 November Street, near Chief Palace Layout, Karu, Abuja, Rubi Smile Dental Clinic was founded with a simple mission: to make quality dental care accessible, comfortable, and affordable for everyone."}
             </p>
             <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-              We serve families, young professionals, and NHIS patients with comprehensive dental care. Our clinic combines modern equipment with a warm, patient-first approach that puts your comfort above all else.
+              {(c.story_p2 as string) || "We serve families, young professionals, and NHIS patients with comprehensive dental care. Our clinic combines modern equipment with a warm, patient-first approach that puts your comfort above all else."}
             </p>
             <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-              We understand that visiting the dentist can be anxiety-inducing. That's why we've created an environment that feels safe, welcoming, and reassuring — whether you're here for a routine cleaning or a complex procedure.
+              {(c.story_p3 as string) || "We understand that visiting the dentist can be anxiety-inducing. That's why we've created an environment that feels safe, welcoming, and reassuring — whether you're here for a routine cleaning or a complex procedure."}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
@@ -147,7 +155,7 @@ const About = () => (
               </div>
               <h3 className="font-display text-2xl font-extrabold text-foreground">Our Mission</h3>
               <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-                To provide exceptional, patient-centered dental care that is accessible, affordable, and delivered with compassion. We strive to educate our patients, prevent oral disease, and restore smiles using the latest techniques and technology.
+                {(c.mission as string) || "To provide exceptional, patient-centered dental care that is accessible, affordable, and delivered with compassion. We strive to educate our patients, prevent oral disease, and restore smiles using the latest techniques and technology."}
               </p>
             </div>
           </SectionReveal>
@@ -158,7 +166,7 @@ const About = () => (
               </div>
               <h3 className="font-display text-2xl font-extrabold text-foreground">Our Vision</h3>
               <p className="font-body text-muted-foreground mt-4 leading-relaxed">
-                To be the most trusted dental clinic in Abuja — known for gentle care, modern facilities, and a genuine commitment to every patient's well-being. We envision a community where quality dental care is within everyone's reach.
+                {(c.vision as string) || "To be the most trusted dental clinic in Abuja — known for gentle care, modern facilities, and a genuine commitment to every patient's well-being. We envision a community where quality dental care is within everyone's reach."}
               </p>
             </div>
           </SectionReveal>
@@ -179,11 +187,11 @@ const About = () => (
           </div>
         </SectionReveal>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {values.map((v, i) => (
-            <SectionReveal key={v.title} delay={i * 0.08}>
+          {dbValues.map((v: any, i: number) => (
+            <SectionReveal key={v.title || i} delay={i * 0.08}>
               <div className="rounded-card bg-background p-8 shadow-card h-full group hover:shadow-hover-lift transition-all duration-300 border border-border/30">
-                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-inner ${v.color} group-hover:scale-110 transition-transform`}>
-                  <v.icon className={`h-6 w-6 ${v.iconColor}`} />
+                <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-inner ${i % 2 === 0 ? "bg-accent/10" : "bg-primary/10"} group-hover:scale-110 transition-transform`}>
+                  {(() => { const Icon = values[i]?.icon || Heart; return <Icon className={`h-6 w-6 ${i % 2 === 0 ? "text-accent" : "text-primary"}`} />; })()}
                 </div>
                 <h3 className="font-display text-lg font-bold text-foreground">{v.title}</h3>
                 <p className="font-body text-sm text-muted-foreground mt-2 leading-relaxed">{v.desc}</p>
@@ -207,8 +215,8 @@ const About = () => (
         </SectionReveal>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {milestones.map((m, i) => (
-            <SectionReveal key={m.year} delay={i * 0.1}>
+          {dbMilestones.map((m: any, i: number) => (
+            <SectionReveal key={m.year || i} delay={i * 0.1}>
               <div className="relative text-center p-6">
                 <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-accent/15 border border-accent/25 mb-4">
                   <span className="font-display text-xs font-bold text-accent">{m.year}</span>
@@ -286,8 +294,8 @@ const About = () => (
             </h2>
             <div className="mt-8 space-y-5">
               {[
-                { icon: MapPin, label: "Location", value: "No 6 November Street, near Chief Palace Layout, Karu, Abuja" },
-                { icon: Clock, label: "Hours", value: "Mon – Fri: 9:00 AM – 5:30 PM | Sat: 9:00 AM – 3:30 PM" },
+                { icon: MapPin, label: "Location", value: (c.address as string) || "No 6 November Street, near Chief Palace Layout, Karu, Abuja" },
+                { icon: Clock, label: "Hours", value: (c.hours as string) || "Mon – Fri: 9:00 AM – 5:30 PM | Sat: 9:00 AM – 3:30 PM" },
                 { icon: MessageCircle, label: "WhatsApp", value: "0903 853 5214" },
                 { icon: Phone, label: "Call / Enquiry", value: "0902 440 3837" },
               ].map((item) => (
@@ -330,7 +338,7 @@ const About = () => (
       <div className="container mx-auto px-6 relative z-10 text-center">
         <SectionReveal>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-primary-foreground max-w-2xl mx-auto">
-            Ready to Experience the Rubi Smile Difference?
+            {(c.cta_heading as string) || "Ready to Experience the Rubi Smile Difference?"}
           </h2>
           <p className="font-body text-primary-foreground/70 mt-4 max-w-lg mx-auto leading-relaxed">
             Book your appointment today and discover dental care that truly puts you first.
@@ -355,6 +363,7 @@ const About = () => (
       </div>
     </section>
   </Layout>
-);
+  );
+};
 
 export default About;

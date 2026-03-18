@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import {
   Phone, Shield, Heart, Zap, ArrowRight, Star, Clock, MapPin,
   CheckCircle, Sparkles, Users, CalendarCheck, Award, MessageCircle,
-  ChevronRight, Quote, Stethoscope, SmilePlus, Baby, Scissors, ChevronDown
+  ChevronRight, Quote, Stethoscope, SmilePlus, Baby, Scissors, ChevronDown,
+  Send, Upload, Loader2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
 import SectionReveal from "@/components/SectionReveal";
 
 /* ─── Gallery image imports ─── */

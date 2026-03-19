@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, ArrowRight } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { socialLinks } from "./SocialLinks";
 import logo from "@/assets/logo.jpg";
 
 const navLinks = [
